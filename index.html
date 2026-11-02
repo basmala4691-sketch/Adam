@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Adam Smith Experience</title>
+<meta name="description" content="An interactive digital exhibition on Adam Smith, the Scottish moral philosopher and political economist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="intro">
+  <canvas id="dust" aria-hidden="true"></canvas>
+  <div class="glow" aria-hidden="true"></div>
+  <figure class="portrait" id="portrait">
+    <img src="assets/smith.jpg" alt="Portrait of Adam Smith" id="portraitImg">
+  </figure>
+  <div class="intro-text">
+    <h1 id="title" aria-label="Adam Smith">ADAM SMITH</h1>
+    <p class="tag">The thinker who changed the way we understand wealth.</p>
+    <button class="enter" id="enter">Enter the exhibition</button>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <div class="sweep" id="sweep" aria-hidden="true"></div>
+  <header class="nav">
+    <button class="brand" data-go="home" aria-label="Return to the main exhibition">Adam Smith</button>
+    <nav aria-label="Exhibition rooms">
+      <button data-go="man"><span>01</span> The Man</button>
+      <button data-go="library"><span>02</span> The Library</button>
+      <button data-go="theories"><span>03</span> The Theories</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- LOBBY -->
+    <section class="room active" id="home">
+      <div class="lobby">
+        <p class="kick">An interactive digital exhibition</p>
+        <h2 class="big rv">Three rooms.<br>One mind.</h2>
+        <p class="lead rv">Walk through the life, the books and the ideas of Adam Smith (1723–1790), the Scottish philosopher whose work helped lay the foundations of modern economics. Choose a room above to begin.</p>
+      </div>
+    </section>
+
+    <!-- THE MAN -->
+    <section class="room" id="man">
+      <div class="hero"><div class="orb" data-p="0.25"></div>
+        <h2 class="big rv">Behind the ideas<br>was a man.</h2>
+        <p class="lead rv">Discover the life of Adam Smith, the philosopher whose ideas helped shape the foundations of modern economic thought.</p>
+      </div>
+      <div class="wrap narrow">
+        <p class="prose rv">Adam Smith was born in Kirkcaldy, Fife, Scotland, in 1723. His exact birth date is unknown, although he was baptised on 5 June 1723. He became one of the most influential figures of the Scottish Enlightenment, and his education exposed him to philosophy, moral reasoning, science and the debates of his age.</p>
+      </div>
+      <div class="timeline" id="timeline">
+        <div class="tl-line"><i id="tlFill"></i></div>
+        <article class="tl rv"><time>1723</time><p>Born in Kirkcaldy, Scotland.</p></article>
+        <article class="tl rv"><time>1737</time><p>Began studying at the University of Glasgow.</p></article>
+        <article class="tl rv"><time>1740</time><p>Entered Balliol College, Oxford.</p></article>
+        <article class="tl rv"><time>1751</time><p>Appointed Professor of Logic at Glasgow.</p></article>
+        <article class="tl rv"><time>1752</time><p>Became Professor of Moral Philosophy.</p></article>
+        <article class="tl rv"><time>1759</time><p>Published <em>The Theory of Moral Sentiments</em>.</p></article>
+        <article class="tl rv"><time>1764–66</time><p>Travelled through Europe as tutor to the young Duke of Buccleuch, meeting leading intellectuals and economic thinkers.</p></article>
+        <article class="tl rv"><time>1776</time><p>Published <em>The Wealth of Nations</em>.</p></article>
+        <article class="tl rv"><time>1778</time><p>Appointed Commissioner of Customs in Scotland.</p></article>
+        <article class="tl rv"><time>1787</time><p>Elected Rector of the University of Glasgow.</p></article>
+        <article class="tl rv"><time>1790</time><p>Died in Edinburgh on 17 July.</p></article>
+      </div>
+      <div class="wrap narrow ctx">
+        <h3 class="rv">The world that shaped his thinking</h3>
+        <p class="prose rv">The Scottish Enlightenment was a flowering of debate in Edinburgh and Glasgow about philosophy, morality, commerce, trade, government and human behaviour. Smith lived among its thinkers and learned to ask how people judge right and wrong, and how societies prosper.</p>
+        <p class="prose rv">He also lived as Britain’s commerce, trade and manufacturing were expanding, the early stages of what would later be called the Industrial Revolution. That setting informed his observations, but his work did not single-handedly cause it.</p>
+      </div>
+      <div class="hero short"><h2 class="big rv">More than<br>an economist.</h2>
+        <p class="lead rv">Smith was also a moral philosopher. He examined sympathy, justice, human behaviour and the conditions a society needs in order to prosper.</p>
+        <button class="next rv" data-go="library">Continue to the Library</button>
+      </div>
+    </section>
+
+    <!-- THE LIBRARY -->
+    <section class="room" id="library">
+      <div class="hero"><div class="orb" data-p="0.25"></div>
+        <h2 class="big rv">Ideas that outlived<br>their author.</h2>
+        <p class="lead rv">Explore the writings that transformed economic and moral philosophy. Select a book to open it.</p>
+      </div>
+      <div class="shelf" id="shelf"></div>
+      <div class="wrap quotes">
+        <h3 class="rv">Words that still resonate</h3>
+        <figure class="q rv"><blockquote>“The division of labour is limited by the extent of the market.”</blockquote><figcaption>The Wealth of Nations, Book I, Chapter III</figcaption></figure>
+        <figure class="q rv"><blockquote>“No society can surely be flourishing and happy, of which the far greater part of the members are poor and miserable.”</blockquote><figcaption>The Wealth of Nations, Book I, Chapter VIII</figcaption></figure>
+        <figure class="q rv"><blockquote>“How selfish soever man may be supposed, there are evidently some principles in his nature, which interest him in the fortune of others.”</blockquote><figcaption>The Theory of Moral Sentiments, Part I, Section I, Chapter I</figcaption></figure>
+        <figure class="q rv"><blockquote>“The natural effort of every individual to better his own condition…”</blockquote><figcaption>The Wealth of Nations, Book IV, Chapter V. An excerpt, not a complete sentence.</figcaption></figure>
+      </div>
+      <div class="wrap narrow">
+        <h3 class="rv">Beyond the books</h3>
+        <p class="prose rv">Smith also wrote essays and delivered lectures on philosophy, jurisprudence, rhetoric and other subjects. Not every lecture survives as a complete published book; some are known through students’ notes.</p>
+        <button class="next rv" data-go="theories">Continue to the Theories</button>
+      </div>
+    </section>
+
+    <!-- THE THEORIES -->
+    <section class="room" id="theories">
+      <div class="hero"><div class="orb" data-p="0.25"></div>
+        <h2 class="big rv">The architecture of<br>economic thought.</h2>
+        <p class="lead rv">Explore the ideas that helped explain how individuals, markets and societies interact. Select a card to open it.</p>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
+
+  <footer class="final" id="final">
+    <div class="finale">
+      <p class="f1 rv">Ideas have the power to outlive their time.</p>
+      <p class="f2 rv">Adam Smith, 1723–1790</p>
+      <p class="f3 rv">His work continues to challenge the way we understand wealth, freedom, morality and society.</p>
+      <p class="f4 rv">Thank you for exploring.</p>
+    </div>
+    <p class="credits">An educational project by Grade 12<br>Under the supervision of Prof. Momikid</p>
+  </footer>
+</div>
+
+<div id="panel" class="panel" role="dialog" aria-modal="true" aria-labelledby="pt" hidden>
+  <div class="pbox" id="pbox">
+    <button class="x" id="close" aria-label="Close">&times;</button>
+    <div class="pvis" id="pvis" aria-hidden="true"></div>
+    <p class="pk" id="pk"></p>
+    <h3 id="pt"></h3>
+    <div id="pb"></div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
